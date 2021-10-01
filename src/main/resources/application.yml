@@ -1,0 +1,36 @@
+spring:
+  profiles:
+    active: mysql
+
+---
+
+spring:
+  profiles: mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_batch?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: 1234
+
+  batch:
+    jdbc:
+      initialize-schema: always
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      format_sql: true
+      ddl-auto: create
+logging:
+  level:
+    org:
+      hibernate:
+          SQL: DEBUG
+          type:
+            descriptor:
+              sql:
+                BasicBinder: TRACE
+
+
